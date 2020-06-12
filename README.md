@@ -1,7 +1,7 @@
 # Keeper-App
 Note Keeping app using React
 
-![KeeperApp]()
+![KeeperApp](https://i.postimg.cc/2SnxRJnW/Keeper.png)
 
 # Tools used
 

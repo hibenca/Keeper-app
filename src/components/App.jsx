@@ -1,22 +1,35 @@
 import React from "react";
-import Header from "./Header.jsx";
-import Footer from "./Footer.jsx";
-import Note from "./Note.jsx";
-import notes from "../notes";
-
+import Header from "./Header";
+import Footer from "./Footer";
+import Note from "./Note";
+import CreateArea from "./CreateArea";
+import { useState } from "react";
 
 function App() {
-    return (<div>
-        <Header></Header>
-        {notes.map(note =>
-            <Note 
-            key={note.key}
-            title={note.title} 
-            content={note.content}
+
+
+
+
+    const [newTask, setNewTask] = useState([]);
+
+    function addTask(note) {
+        setNewTask(newNote => {
+            return [...newNote, note]
+        })
+    }
+
+    return (
+        <div>
+            <Header />
+            <CreateArea
+                addTask={addTask}
             />
-        )}
-        <Footer></Footer>
-    </div>
+            {newTask.map((noteItem, index) => {
+                return <Note key={index} title={noteItem.title} content={noteItem.content} />
+            })
+            }
+            <Footer />
+        </div>
     );
 }
 

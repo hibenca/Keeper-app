@@ -4,7 +4,17 @@ import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
 
 
+
+
 function CreateArea(props) {
+
+  const [expandNote, setExpandNote] = useState(false);
+
+  function handleNoteClick() {
+    setExpandNote(true);
+  };
+
+
   const [note, setNote] = useState({
     title: "",
     content: ""
@@ -30,23 +40,27 @@ function CreateArea(props) {
     event.preventDefault();
   }
 
+
+
+
   return (
     <div>
       <form className="create-note">
-        <input
+        {expandNote && <input
           name="title"
           onChange={handleChange}
           value={note.title}
           placeholder="Title"
-        />
+        />}
         <textarea
           name="content"
           onChange={handleChange}
+          onClick={handleNoteClick}
           value={note.content}
           placeholder="Take a note..."
-          rows="3"
+          rows={expandNote ? 3 : 1}
         />
-        <Zoom in={true}>
+        <Zoom in={expandNote}>
           <Fab onClick={submitNote}>
             <AddIcon />
           </Fab>
